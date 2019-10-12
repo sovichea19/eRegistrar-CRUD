@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,4 +53,34 @@ public class StudentController {
         student = studentService.saveStudent(student);
         return "redirect:/eregistrar/students/list";
     }
+    
+    //Delete Student
+    @GetMapping(value = {"/eregistrar/student/delete/{studentId}"})
+    public String deleteStudent(@PathVariable Long studentId, Model model) {
+    	studentService.deleteStudentById(studentId);
+    	return "redirect:/eregistrar/students/list";
+    }
+    
+    //Edit Student GET
+	@GetMapping(value = {"/eregistrar/students/edit/{studentId}"})
+    public String editBook(@PathVariable Long studentId, Model model) {
+        Student student = studentService.getStudentById(studentId);
+        if (student != null) {
+            model.addAttribute("student", student);
+            return "students/edit";
+        }
+        return "students/list";
+    }
+
+    @PostMapping(value = {"/eregistrar/students/edit"})
+    public String updateStudent(@Valid @ModelAttribute("student") Student student,
+                                BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "students/edit";
+        }
+        student = studentService.saveStudent(student);
+        return "redirect:/eregistrar/students/list";
+    }
+
 }

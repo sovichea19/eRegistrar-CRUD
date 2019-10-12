@@ -73,12 +73,36 @@
                 <td th:text="${student.lastname}"></td>
                 <td th:text="${student.enrollmentDate}"></td>
                 <td th:text="${student.international}"></td>
-                <td><a th:href="@{'/ereistrar/students/edit/{studentId}'(studentId=${student.studentId})}">Edit</a></td>
+                <td><a th:href="@{'/eregistrar/students/edit/{studentId}'(studentId=${student.studentId})}">Edit</a></td>
+                    
                 <td>
-                    <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/ergistrar/students/delete/' + ${student.studentId}}">Delete</a>
-                    <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-                    <!--                            Launch demo modal-->
-                    <!--                        </button>-->
+                        <a data-toggle="modal" data-target="#confirmDeleteBookModal" th:href="@{'/eregistrar/student/delete/' + ${student.studentId}}">Delete</a>
+<!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+<!--                            Launch demo modal-->
+<!--                        </button>-->
+							<!-- Modal -->
+						    <div class="modal fade" id="confirmDeleteBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						        <div class="modal-dialog modal-dialog-centered" role="document">
+						            <div class="modal-content">
+						                <div class="modal-header">
+						                    <h5 class="modal-title" id="exampleModalCenterTitle">Confirm Delete</h5>
+						                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                        <span aria-hidden="true">&times;</span>
+						                    </button>
+						                </div>
+						                <div class="modal-body">
+						                    Are you sure you wish to delete this student data?
+						                </div>
+						                <div class="modal-footer">
+						                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+						                    <a th:href="@{'/eregistrar/student/delete/' + ${student.studentId}}">
+						                    	<button type="button" class="btn btn-primary">Yes</button>
+						                    </a>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+                    </td>
                 </td>
             </tr>
             </tbody>
@@ -103,26 +127,29 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="confirmDeleteBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Confirm Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you wish to delete this student data?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary">Yes</button>
+	<!-- Modal -->
+<!--    <div class="modal fade" id="confirmDeleteBookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you wish to delete this book data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <a th:href="@{'/ergistrar/students/delete/' + ${student.studentId}}">
+                    	<button type="button" class="btn btn-primary">Yes</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+ -->
 
 <footer class="footer">
     <div class="container">
